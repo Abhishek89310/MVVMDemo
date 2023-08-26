@@ -15,11 +15,11 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableViewAndUI()
-        // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
         vmodel.fetchAndMapData()
+        //reloading the tableview after loading the data
         vmodel.reloadTable = {
             DispatchQueue.main.async {
                 self.tableView.reloadData()

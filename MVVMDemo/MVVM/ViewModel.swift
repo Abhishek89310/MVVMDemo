@@ -7,10 +7,13 @@
 
 import Foundation
 
+//We wrote all the bussiness logic in ViewModel in MVVM.
+//Dont import UIkit on ViewModel
 class viewModel{
     var reloadTable:(()->())?
     var list:[listModel] = []
     
+    //fetching data from api and reloading tableview
     func fetchAndMapData() {
            API().fetchListData { [weak self] items, error in
                if let error = error {
