@@ -8,7 +8,7 @@
 import Foundation
 
 //model for mapping the JSON Response
-struct listModel:Codable {
+struct ListModel:Codable {
         let title: String
-        let body: String
+        let name: String
 }

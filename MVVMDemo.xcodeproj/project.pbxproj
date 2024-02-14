@@ -18,7 +18,6 @@
 		661D87CB2A99F0BE0060546E /* MVVMDemoUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661D87CA2A99F0BE0060546E /* MVVMDemoUITestsLaunchTests.swift */; };
 		661D87D82A99F0F30060546E /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661D87D72A99F0F30060546E /* ViewModel.swift */; };
 		661D87DA2A99F1080060546E /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661D87D92A99F1080060546E /* Model.swift */; };
-		661D87E12A99FB7C0060546E /* APIFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661D87E02A99FB7C0060546E /* APIFunctions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,7 +53,6 @@
 		661D87CA2A99F0BE0060546E /* MVVMDemoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVVMDemoUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		661D87D72A99F0F30060546E /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		661D87D92A99F1080060546E /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
-		661D87E02A99FB7C0060546E /* APIFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIFunctions.swift; path = ../../../.Trash/APIFunctions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,7 +83,6 @@
 		661D87982A99F0BD0060546E = {
 			isa = PBXGroup;
 			children = (
-				661D87E02A99FB7C0060546E /* APIFunctions.swift */,
 				661D87A32A99F0BD0060546E /* MVVMDemo */,
 				661D87BD2A99F0BE0060546E /* MVVMDemoTests */,
 				661D87C72A99F0BE0060546E /* MVVMDemoUITests */,
@@ -274,7 +271,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				661D87E12A99FB7C0060546E /* APIFunctions.swift in Sources */,
 				661D87D82A99F0F30060546E /* ViewModel.swift in Sources */,
 				661D87AF2A99F0BD0060546E /* MVVMDemo.xcdatamodeld in Sources */,
 				661D87A92A99F0BD0060546E /* ViewController.swift in Sources */,

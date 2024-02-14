@@ -1,54 +1,57 @@
-//
-//  ViewController.swift
-//  MVVMDemo
-//
-//  Created by Matrix on 26/08/23.
-//
-
 import UIKit
 
 class ViewController: UIViewController {
+    private var tableView: UITableView!
 
-    var tableView: UITableView!
-    var vmodel = viewModel()
-    
+    private var viewModel: ListViewModel!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupTableViewAndUI()
+        setupViewModel()
+        setupTableView()
+       // viewModel.fetchListData()
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        vmodel.fetchAndMapData()
-        //reloading the tableview after loading the data
-        vmodel.reloadTable = {
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }
+
+    private func setupViewModel() {
+//        let api = ListAPI()
+//        viewModel = ListViewModel(api: api)
+        viewModel.delegate = self
     }
-    
-    func setupTableViewAndUI() {
+
+    private func setupTableView() {
         tableView = UITableView(frame: view.bounds, style: .plain)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "DefaultCell")
-        view.addSubview(tableView)
         self.title = "MVVM"
+        view.addSubview(tableView)
     }
 }
 
-extension ViewController:UITableViewDelegate,UITableViewDataSource {
+extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        vmodel.list.count
+        return viewModel.numberOfItems()
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DefaultCell", for: indexPath)
-        
-        let item = vmodel.list[indexPath.row]
-        
-        // Configure the cell with the data
-        cell.textLabel?.text = item.title
+        let item = viewModel.item(at: indexPath.row)
+        cell.textLabel?.text = item.name
         return cell
     }
 }
+
+extension ViewController: ListViewModelDelegate {
+    func didFetchListData() {
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+
+    func failedToFetchListData(error: Error) {
+        print("Error fetching list data: \(error)")
+        // Handle error presentation if needed
+    }
+}
+

@@ -1,30 +1,41 @@
-//
-//  ViewModel.swift
-//  MVVMDemo
-//
-//  Created by Matrix on 26/08/23.
-//
-
 import Foundation
 
-//We wrote all the bussiness logic in ViewModel in MVVM.
-//Dont import UIkit on ViewModel
-class viewModel{
-    var reloadTable:(()->())?
-    var list:[listModel] = []
-    
-    //fetching data from api and reloading tableview
-    func fetchAndMapData() {
-           API().fetchListData { [weak self] items, error in
-               if let error = error {
-                   print("Error fetching list data: \(error)")
-                   return
-               }
-               
-               if let items = items {
-                   self?.list = items
-                   self?.reloadTable?()
-               }
-           }
-       }
+protocol ListViewModelDelegate: AnyObject {
+    func didFetchListData()
+    func failedToFetchListData(error: Error)
 }
+
+class ListViewModel {
+    private let api: ListAPI
+    private var list: [ListModel] = []
+
+    weak var delegate: ListViewModelDelegate?
+
+    init(api: ListAPI) {
+        self.api = api
+    }
+
+    func fetchListData() {
+        api.fetchListData { [weak self] items, error in
+            guard let self = self else { return }
+            if let error = error {
+                self.delegate?.failedToFetchListData(error: error)
+                return
+            }
+
+            if let items = items {
+                self.list = items
+                self.delegate?.didFetchListData()
+            }
+        }
+    }
+
+    func numberOfItems() -> Int {
+        return list.count
+    }
+
+    func item(at index: Int) -> ListModel {
+        return list[index]
+    }
+}
+
