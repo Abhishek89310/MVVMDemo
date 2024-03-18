@@ -11,7 +11,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         setupViewModel()
         setupTableView()
-       // viewModel.fetchListData()
+        viewModel.fetchListData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -19,8 +19,8 @@ class ViewController: UIViewController {
     }
 
     private func setupViewModel() {
-//        let api = ListAPI()
-//        viewModel = ListViewModel(api: api)
+       let api = ListAPI()
+       viewModel = ListViewModel(api: api)
         viewModel.delegate = self
     }
 
